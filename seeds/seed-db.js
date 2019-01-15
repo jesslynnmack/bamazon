@@ -1,64 +1,73 @@
-// Import Database Models
-// =============================================================
 const db = require('../models');
 
-// Syncing our sequelize models 
-// =============================================================
-db.sequelize.sync().then(function () {
-    db.Product.bulkCreate([{
-        product_name: 'Head Phones',
-        department_name: 'Apple',
-        price: 20,
-        stock_quantity: 30
-    }, {
-        product_name: 'Basket Ball',
-        department_name: 'My Tennis Balls Corp',
-        price: 8,
-        stock_quantity: 30
-    }, {
-        product_name: 'Doggie Shark Costume',
-        department_name: 'Doggo Halloween Inc.',
-        price: 20,
-        stock_quantity: 30
-    }, {
-        product_name: 'Sneakers',
-        department_name: 'Nike',
-        price: 50,
-        stock_quantity: 30
-    }, {
-        product_name: 'Yoyo',
-        department_name: '2000 Inc',
-        price: 5,
-        stock_quantity: 30
-    }, {
-        product_name: 'Walkman',
-        department_name: '2000 Inc',
-        price: 30,
-        stock_quantity: 30
-    }, {
-        product_name: 'Mackbook Pro',
-        department_name: 'Apple',
-        price: 1200,
-        stock_quantity: 30
-    }, {
-        product_name: 'iPhone',
-        department_name: 'Apple',
-        price: 900,
-        stock_quantity: 30
-    }, {
-        product_name: 'Dog Collar',
-        department_name: 'Doggos Inc',
-        price: 10,
-        stock_quantity: 30
-    }, {
-        product_name: 'Yoyo',
-        department_name: '2000 Inc',
-        price: 5,
-        stock_quantity: 30
-    },
-    ]).then(function (data) {
-        console.log('Data successfully added!');
-    }).catch(function (error) {
-        console.log('Error', error)
+const items = [
+  {
+    product_name: "Uncharted 4",
+    department_name: "Video Games",
+    price: 49.95,
+    stock_quantity: 150
+    }, 
+  {
+    product_name: "DOOM",
+    department_name: "Video Games",
+    price: 59.99,
+    stock_quantity: 200
+    }, 
+  {
+    product_name: "Crate of Spam",
+    department_name: "Food and Drink",
+    price: 24.50,
+    stock_quantity: 50
+    }, 
+  {
+    product_name: "Cool Shades",
+    department_name: "Apparel",
+    price: 75.00,
+    stock_quantity: 5
+    }, 
+  {
+    product_name: "Worn Denim Jeans",
+    department_name: "Apparel",
+    price: 54.25,
+    stock_quantity: 35
+    }, 
+  {
+    product_name: "Survival Towel",
+    department_name: "Necessities",
+    price: 42.42,
+    stock_quantity: 42
+    }, 
+  {
+    product_name: "Bill and Ted's Excellent Adventure",
+    department_name: "Films",
+    price: 15.00,
+    stock_quantity: 25
+    }, 
+  {
+    product_name: "Mad Max: Fury Road",
+    department_name: "Films",
+    price: 25.50,
+    stock_quantity: 57
+    }, 
+  {
+    product_name: "Monopoly",
+    department_name: "Board Games",
+    price: 30.50,
+    stock_quantity: 35
+    }, 
+  {
+    product_name: "Yahtzee",
+    department_name: "Board Games",
+    price: 19.95,
+    stock_quantity: 23
+    }
+  ];
+
+  db.sequelize.sync({force: true}).then(function() {
+    db.Product.bulkCreate(items).then(function(rows) {
+      console.log('\n\nINSERTED\n\n');
+    }).catch(function(err) {
+      console.log('\n\nError:', err);
     });
-});
+  });
+  
